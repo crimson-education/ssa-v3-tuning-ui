@@ -22,12 +22,13 @@
             gap: 20px;
             max-width: 1800px;
             margin: 0 auto;
-            height: 95vh;
+            min-height: 95vh;             /* allow container to grow beyond viewport if needed */
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
+            }
+
 
         .title {
             grid-column: 1 / -1;
@@ -68,6 +69,13 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.07);
             font-size: 13px;
             line-height: 1.4;
+        }
+
+        .controls-panel,
+        .plot-container,
+        .info-panel {
+            max-height: calc(100vh - 180px); /* visible viewport minus header/footer/padding */
+            overflow-y: auto;
         }
 
         .button-panel {
@@ -215,6 +223,47 @@
         .info-section li {
             margin-bottom: 5px;
         }
+
+        .full-info-sections {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* side by side */
+            gap: 20px;
+        }
+
+        .full-info-sections .info-section {
+            background: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+        }
+
+
+        .framework-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .framework-table th, 
+        .framework-table td {
+            border: 1px solid #dee2e6;
+            padding: 6px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .framework-table th {
+            background: #f1f3f5;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .framework-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
 
         .parameter-display {
             background: white;
@@ -473,6 +522,59 @@
                     <li><strong>Double-click:</strong> Reset view</li>
                     <li><strong>Select:</strong> Box zoom mode</li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="full-info-sections">
+            <div class="info-section">
+                <h3>📚 Academic Score Interpretation</h3>
+                <div style="overflow-x:auto;">
+                    <table class="framework-table">
+                        <thead>
+                            <tr>
+                                <th>Score</th>
+                                <th>Tests</th>
+                                <th>GPA</th>
+                                <th>Rigor</th>
+                                <th>Class Rank</th>
+                                <th>Interpretation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>6.0</td><td>SAT ≥ 1550<br>ACT 35–36</td><td>≥ 3.95 / 95%</td><td>IB ≥ 42<br>12+ AP<br>≥ 4 A* A-levels</td><td>Top 1–2%</td><td>Truly exceptional; max performance</td></tr>
+                            <tr><td>5.5 – 5.9</td><td>SAT 1520–1540<br>ACT 34–35</td><td>3.9–4.0 / 92–95%</td><td>IB 40–41<br>9–11 AP<br>3 A* A-levels</td><td>Top 3–5%</td><td>Outstanding; near-perfect with strong rigor</td></tr>
+                            <tr><td>5.0 – 5.4</td><td>SAT 1450–1510<br>ACT 32–33</td><td>3.7–3.9 / 90–92%</td><td>IB 38–39<br>6–8 AP<br>AAA A-levels</td><td>Top 6–10%</td><td>Strong academics; competitive and solid rigor</td></tr>
+                            <tr><td>4.0 – 4.9</td><td>SAT 1350–1440<br>ACT 29–31</td><td>3.3–3.6 / 87–90%</td><td>IB 35–37<br>4–5 AP<br>AAB A-levels</td><td>Top 11–15%</td><td>Above-average; consistent achievement</td></tr>
+                            <tr><td>3.0 – 3.9</td><td>SAT 1200–1340<br>ACT 25–28</td><td>3.0–3.2 / 83–86%</td><td>IB 32–34<br>2–3 AP<br>ABB A-levels</td><td>Top 16–25%</td><td>Average; weaker rigor/test profile</td></tr>
+                            <tr><td>2.0 – 2.9</td><td>SAT 1050–1190<br>ACT 21–24</td><td>2.5–2.9 / 75–82%</td><td>IB < 32<br>1 AP<br>≤ ABB A-levels</td><td>> 25%</td><td>Below average; limited rigor</td></tr>
+                            <tr><td>1.0 – 1.9</td><td>SAT < 1050<br>ACT < 21</td><td>< 2.5 / ≤ 74%</td><td>No rigor</td><td>Bottom quartile</td><td>Weak or missing academic data</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>🌟 Extracurricular Score Interpretation</h3>
+                <div style="overflow-x:auto;">
+                    <table class="framework-table">
+                        <thead>
+                            <tr>
+                                <th>Score</th>
+                                <th>Activities & Leadership</th>
+                                <th>Honors & Recognition</th>
+                                <th>Interpretation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>6.0</td><td>Founded orgs with global impact; breakthrough research; intl athletics</td><td>IMO/IOI/ISEF wins, national awards, major scholarships</td><td>World-class; transformative leadership</td></tr>
+                            <tr><td>5.0 – 5.9</td><td>First-author pubs or original leadership; selective internships; elite athletics</td><td>Publications, state/regional wins, selective scholarships</td><td>Outstanding; national-level competitiveness</td></tr>
+                            <tr><td>4.0 – 4.9</td><td>Multiple co-authored pubs; regional competitions; internships</td><td>Regional honors, athletic recognition</td><td>Very strong; sustained, visible involvement</td></tr>
+                            <tr><td>3.0 – 3.9</td><td>School-level leadership; consistent engagement; community involvement</td><td>Local awards, honor societies</td><td>Solid; breadth and commitment at school/local level</td></tr>
+                            <tr><td>2.0 – 2.9</td><td>Some leadership; part-time work; modest involvement</td><td>Honor roll, participation awards</td><td>Below average; limited scope</td></tr>
+                            <tr><td>1.0 – 1.9</td><td>Minimal participation; no leadership</td><td>Few or no honors</td><td>Weak profile; low commitment</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
