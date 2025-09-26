@@ -74,7 +74,7 @@ function updatePlot() {
                     x: Array.from({ length: curve.length }, (_, i) => i + 1),
                     y: adjusted,
                     mode: 'lines',
-                    name: `Diff=${diffKey} ${key}`,
+                    name: `${key}`,
                     line: { width: 2, dash, color },
                     opacity: 0.95
                 });
